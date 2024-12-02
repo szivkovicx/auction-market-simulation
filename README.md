@@ -4,6 +4,8 @@ Auction-based market simulation using market making and market taking zero intel
 
 It contains an order book, zero intelligence agent and simulation written from scratch together with basic order book UI component.
 
+![image](https://github.com/user-attachments/assets/b06d6b89-df7a-4f95-be2e-1e52d298d7e1)
+
 ## About Auction Markets
 
 Auction-based market is an type of market in which participants ( buyers and sellers ) both try to offer best prices. Essentially, price is determined by best offered bid price ( buying price ) and ask price ( selling price ) and execution occurs once there is a particular seller offering to sell to a buyer and particular buyer offering to buy from specific seller.
