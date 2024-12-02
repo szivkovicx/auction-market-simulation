@@ -47,3 +47,16 @@ And then just run:
 - Active volume range - Controls range of volume utilized by market takers
 - Spread range - Controls potential spread of market makers
 
+## Resources
+
+[Limit Order Book - Investopedia](https://www.investopedia.com/terms/l/limitorderbook.asp)
+
+[Central limit order book - Wikipedia](https://en.wikipedia.org/wiki/Central_limit_order_book)
+
+[Limit order book - UCLA](https://www.math.ucla.edu/~mason/papers/gould-qf-final.pdf)
+
+[Zero intelligence agents - Wikipedia](https://en.wikipedia.org/wiki/Zero-intelligence_trader)
+
+[LOB Simulation - Arxiv](https://arxiv.org/abs/2402.17359)
+
+
