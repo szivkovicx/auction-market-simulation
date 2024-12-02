@@ -1,3 +1,5 @@
+![TypeScript](https://img.shields.io/badge/typescript-%23007ACC.svg?style=for-the-badge&logo=typescript&logoColor=white)
+
 # Auction Market Simulation
 
 Auction-based market simulation using market making and market taking zero intelligence agents. It's controlled using various basic variables that focus directly on market making configuration and aggressive supply/demand.
