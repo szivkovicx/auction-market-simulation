@@ -1,0 +1,36 @@
+.page {
+    display: flex;
+    flex-direction: row;
+}
+
+.priceChart {
+    width: 65%;
+    height: 97vh;
+}
+
+.controlContainer {
+    display: block;
+    position: relative;
+    width: 17%;
+}
+
+.orderflowContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.orderflowChart {
+    height: 24vh;
+}
+
+.controlPanel {
+    display: flex;
+    flex-direction: column;
+    height: 48vh;
+    padding: 40px;
+    gap: 10px;
+}
+
+.orderBook {
+    height: 48vh;
+}
