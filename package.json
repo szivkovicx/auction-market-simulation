@@ -1,12 +1,15 @@
 {
   "name": "auction-market-simulation",
   "version": "0.1.0",
+  "homepage": "https://szivkovicx.github.io/auction-market-simulation",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@chakra-ui/react": "^3.2.2",
