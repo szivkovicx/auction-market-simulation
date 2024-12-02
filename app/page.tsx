@@ -4,7 +4,6 @@ import { Market } from "@/simulator";
 import { Line, Bar } from "react-chartjs-2";
 import { Chart as ChartJS, registerables } from 'chart.js';
 import { useEffect, useRef, useState } from "react";
-import zoomPlugin from 'chartjs-plugin-zoom';
 import { Slider } from "@/components/ui/slider";
 import { Table } from "@chakra-ui/react"
 
@@ -12,7 +11,6 @@ import styles from './page.module.css';
 import { Provider } from "@/components/ui/provider";
 
 ChartJS.register(...registerables);
-ChartJS.register(zoomPlugin);
 
 type PriceData = number | null;
 
@@ -67,6 +65,13 @@ export default function Home() {
     }
     return []
   }
+
+  useEffect(() => {
+    if (typeof window !== "undefined")
+      import("chartjs-plugin-zoom").then((plugin) => {
+        ChartJS.register(plugin.default);
+      });
+    }, []);
 
   useEffect(() => {
     marketRef.current.updateParameters(
