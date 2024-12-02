@@ -1,16 +1,26 @@
 'use client';
 
-import { Market } from "@/simulator";
-import { Line, Bar } from "react-chartjs-2";
+import dynamic from 'next/dynamic';
+import 'chart.js/auto';
+
 import { Chart as ChartJS, registerables } from 'chart.js';
+
+ChartJS.register(...registerables);
+
+const Line = dynamic(() => import('react-chartjs-2').then((mod) => mod.Line), {
+  ssr: false,
+});
+const Bar = dynamic(() => import('react-chartjs-2').then((mod) => mod.Bar), {
+  ssr: false,
+});
+
+import { Market } from "@/simulator";
 import { useEffect, useRef, useState } from "react";
 import { Slider } from "@/components/ui/slider";
 import { Table } from "@chakra-ui/react"
 
 import styles from './page.module.css';
 import { Provider } from "@/components/ui/provider";
-
-ChartJS.register(...registerables);
 
 type PriceData = number | null;
 
@@ -67,13 +77,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    if (typeof window !== "undefined")
-      import("chartjs-plugin-zoom").then((plugin) => {
-        ChartJS.register(plugin.default);
-      });
-    }, []);
-
-  useEffect(() => {
     marketRef.current.updateParameters(
       passiveSupply, passiveDemand, activeSupply, activeDemand,
       passiveQtyRange, activeQtyRange, passiveSpreadRange
@@ -98,7 +101,7 @@ export default function Home() {
       }
       setTime((pre) => [...pre, currentTime]);
       setBook(orderBook);
-    }, 1000);
+    }, 400);
 
     return () => clearInterval(interval);
   }, []);
@@ -207,17 +210,13 @@ export default function Home() {
               options={{
                 maintainAspectRatio: false,
                 spanGaps: true,
-                plugins: {
-                  zoom: {
-                    zoom: {
-                      wheel: {
-                        enabled: true,
-                      },
-                      pinch: {
-                        enabled: true
-                      },
-                      mode: 'y',
-                    }
+                animation: {
+                  duration: 0
+                },
+                scales: {
+                  y: {
+                    min: bids[-1] as number - 10,
+                    max: asks[-1] as number + 10
                   }
                 }
               }}
@@ -245,19 +244,9 @@ export default function Home() {
                 <Line
                   options={{
                     maintainAspectRatio: false,
-                    plugins: {
-                      zoom: {
-                        zoom: {
-                          wheel: {
-                            enabled: true,
-                          },
-                          pinch: {
-                            enabled: true
-                          },
-                          mode: 'y',
-                        }
-                      }
-                    }
+                    animation: {
+                      duration: 0
+                  }              
                   }}
                   data={{
                     labels: time,
@@ -283,19 +272,6 @@ export default function Home() {
                         },
                       }
                     },
-                    plugins: {
-                      zoom: {
-                        zoom: {
-                          wheel: {
-                            enabled: true,
-                          },
-                          pinch: {
-                            enabled: true
-                          },
-                          mode: 'y',
-                        }
-                      }
-                    }
                   }}
                   data={{
                     labels: [...getPrices('bids'), ...getPrices('asks')],
@@ -341,19 +317,9 @@ export default function Home() {
                 <Line
                   options={{
                     maintainAspectRatio: false,
-                    plugins: {
-                      zoom: {
-                        zoom: {
-                          wheel: {
-                            enabled: true,
-                          },
-                          pinch: {
-                            enabled: true
-                          },
-                          mode: 'y',
-                        }
-                      }
-                    }
+                    animation: {
+                      duration: 0
+                  }              
                   }}
                   data={{
                     labels: time,
